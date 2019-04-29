@@ -9,7 +9,8 @@ Developers on embedded systems can include this header file to help them and the
 Introducing safe libraries to development is nothing new, as was covered in the 2007 presentation on [SDL for Windows Vista](https://www.acsac.org/2007/workshop/Howard.pdf) (slide 7).
 However, these basic libraries have been shown to provide significant value - as discussed later in the deck, 41% of bugs that Microsoft knew they removed in Vista early on were due to removal of 'banned' API function calls.
 
-Read below for examples
+The repository includes some example programs that demonstrate unsafe coding that can be improved or warned against using this header.
+Below is a brief example of how to build and run the example programs.
 
 # Example
 
@@ -66,7 +67,7 @@ Note that simply using `strncpy` in this case would not terminate the buffer, an
 These variants are sometimes banned because they are tough to call correctly. As Microsoft learned when making the original banned.h, there are numerous errors observed when people call those. The replacement functions attempt to helping fix some issues such as how the default 'n' functions can fail to not null-terminate on overflowed buffers and will not return an error code on overflow.
 
 ## Will this make my code 100% secure?
-No. Simply replacing a banned function call with a better replacement does not guarantee that the code is secure. You can still use the functions incorrectly, but based on learnings from passed banned.h files and from our team's experience, they should help produce more secure code with less buffer-overruns if used thoughfully.
+No. Simply replacing a banned function call with a better replacement does not guarantee that the code is secure. You can still use the functions incorrectly, but based on learnings from passed banned.h files and from our team's experience, they should help produce more secure code with less buffer-overruns if used thoughtfully.
 
 ## What are other methods?
 In Windows development, developers get the benefit often other ways than banned.h today, such as using Safe CRT if the compiler supports it (introduced in Visual Studio 2005). This will warn of deprecated functions like this file does, and sometimes change calls to safe variants for the user at compile time.
